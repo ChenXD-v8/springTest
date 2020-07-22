@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       ">
+    <bean id="chineseSay" class="com.Chen.dao.ChineseSay"/>
+    <bean id="englishSay" class="com.Chen.dao.EnglishSay"/>
+
+    <bean id="divAspect" class="com.Chen.dao.PointCut">
+        <property name="jobNumber" value="28121"/>
+    </bean>
+    <aop:config>
+        <aop:aspect ref="divAspect">
+            <aop:pointcut id="pointCut" expression="execution(* com.Chen.dao.*Say.*(..))"/>
+            <aop:before method="beforeISay" pointcut-ref="pointCut"/>
+            <aop:after method="afterISay" pointcut-ref="pointCut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
