@@ -24,9 +24,7 @@
             <if test="address !=null">
                 address =#{address},
             </if>
-            <if test="objectVersionNumber !=null">
-                object_version_number =#{objectVersionNumber},
-            </if>
+             object_version_number =object_version_number+1,
             <if test="creationDate !=null">
                 creation_date=#{creationDate},
             </if>

@@ -55,9 +55,8 @@ public class MyTest01 {
         ApplicationContext context=new ClassPathXmlApplicationContext("ApplicationContext.xml");
         SysUserMapper sysUserMapper = context.getBean("sysUserMapper", SysUserMapper.class);
         SysUser user=new SysUser();
-        user.setUserNumber("20004");
+        user.setUserNumber("20006");
         user.setUserName("小陈");
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         user.setAddress("河北省石家庄市石家庄铁道大学");
         System.out.println("插入用户信息后返回的用户ID为： " +sysUserMapper.insertUser(user));
     }

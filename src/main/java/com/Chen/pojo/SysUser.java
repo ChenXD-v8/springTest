@@ -14,8 +14,8 @@ public class SysUser {
     private String userName;
     private String address;
     private BigInteger objectVersionNumber=new BigInteger("0");
-    private Timestamp creationDate=new Timestamp(new Date().getTime());
+    private Date creationDate=new Date();
     private BigInteger createdBy=new BigInteger("-1");
-    private Timestamp lastUpdateDate=new Timestamp(new Date().getTime());
+    private Date lastUpdateDate=new Date();
     private BigInteger lastUpdatedBy=new BigInteger("-1");
 }
