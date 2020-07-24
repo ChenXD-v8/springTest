@@ -16,7 +16,7 @@
                 and item_code like #{itemCode}
             </if>
             <if test="itemName !=null">
-                and item_name like +#{itemName}
+                and item_name like #{itemName}
             </if>
             <if test="createdBy !=null">
                 and h.created_by = #{createdBy}
@@ -27,6 +27,3 @@
         </where>
     </select>
 </mapper>
-<!--        用以根据传入条件动态查询订单行数据。
-        查询条件包含订单编号(模糊)、订单行号、物料编码(模糊)、物料名称(模糊)、订单创建人id、订单客户id。-->
-<!--        查询结果包含订单编号、客户名称、客户地址、订单备注、订单创建人、订单行号、物料编码、物料名称、单价、数量、行总价-->
