@@ -7,17 +7,18 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        ">
-    <bean id="chineseSay" class="com.Chen.dao.ChineseSay"/>
-    <bean id="englishSay" class="com.Chen.dao.EnglishSay"/>
-
-    <bean id="divAspect" class="com.Chen.dao.PointCut">
+    <import resource="spring-dao.xml"/>
+    <bean id="chineseSay" class="com.Chen.springTest01.ChineseSay"/>
+    <bean id="englishSay" class="com.Chen.springTest01.EnglishSay"/>
+    <bean id="divAspect" class="com.Chen.springTest01.PointCut">
         <property name="jobNumber" value="28121"/>
     </bean>
     <aop:config>
         <aop:aspect ref="divAspect">
-            <aop:pointcut id="pointCut" expression="execution(* com.Chen.dao.*Say.*(..))"/>
+            <aop:pointcut id="pointCut" expression="execution(* com.Chen.springTest01.*Say.*(..))"/>
             <aop:before method="beforeISay" pointcut-ref="pointCut"/>
             <aop:after method="afterISay" pointcut-ref="pointCut"/>
         </aop:aspect>
     </aop:config>
+
 </beans>

@@ -1,4 +1,4 @@
-package com.Chen.dao;
+package com.Chen.springTest01;
 
 public class PointCut {
     private  String jobNumber;

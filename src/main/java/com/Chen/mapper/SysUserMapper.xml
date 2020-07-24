@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Chen.mapper.SysUserMapper">
+
+    <select id="getUserList" resultType="sysUser">
+        select * from sys_user
+    </select>
+
+    <insert id="insertUser" parameterType="sysUser" keyProperty="userId" useGeneratedKeys="true" keyColumn="user_id" >
+       INSERT INTO sys_user(user_number,user_name,address,object_version_number,creation_date,created_by,last_update_date,last_updated_by)  VALUES (#{userNumber}, #{userName}, #{address}, #{objectVersionNumber}, #{creationDate}, #{createdBy}, #{lastUpdateDate}, #{lastUpdatedBy});
+    </insert>
+    
+    <update id="updateUser" parameterType="sysUser">
+        update sys_user
+        <set>
+            <if test="userNumber !=null">
+                user_number =#{userNumber},
+            </if>
+            <if test="userName !=null">
+                user_name =#{userName},
+            </if>
+            <if test="address !=null">
+                address =#{address},
+            </if>
+            <if test="objectVersionNumber !=null">
+                object_version_number =#{objectVersionNumber},
+            </if>
+            <if test="creationDate !=null">
+                creation_date=#{creationDate},
+            </if>
+            <if test="createdBy !=null">
+                created_by =#{createdBy},
+            </if>
+            <if test="lastUpdateDate !=null">
+                last_update_date=#{lastUpdateDate},
+            </if>
+            <if test="lastUpdatedBy">
+                last_updated_by=#{lastUpdatedBy}
+            </if>
+        </set>
+        where user_id =#{userId}
+    </update>
+    
+    <delete id="deleteUser" >
+        delete from sys_user where user_id =#{userId}
+    </delete>
+
+</mapper>

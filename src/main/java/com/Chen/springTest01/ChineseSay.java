@@ -1,4 +1,4 @@
-package com.Chen.dao;
+package com.Chen.springTest01;
 
 public class ChineseSay implements Person.ISay {
     @Override

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Chen.mapper.OrderHeaderMapper">
+    <select id="selectOrderLinesByCondition" resultType="orderLineQueryResult" parameterType="orderLineQueryCondition">
+        select order_number,u1.user_name as customer_user_name,u1.address,remark,u2.user_name createdByName,order_line_number,item_code,item_name,unit_price,quantity,line_amount from order_header h left join order_line l on h.order_header_id=l.order_header_id left join sys_user u1 on h.customer_user_id=u1.user_id left join sys_user u2 on h.created_by=u2.user_id
+        <where>
+            <if test="orderNumber !=null">
+                order_number like #{orderNumber}
+            </if>
+            <if test="orderLineNumber !=0">
+               and order_line_number = #{orderLineNumber}
+            </if>
+            <if test="itemCode !=null">
+                and item_code like #{itemCode}
+            </if>
+            <if test="itemName !=null">
+                and item_name like +#{itemName}
+            </if>
+            <if test="createdBy !=null">
+                and h.created_by = #{createdBy}
+            </if>
+            <if test="customerUserId !=null">
+                and customer_user_id = #{customerUserId}
+            </if>
+        </where>
+    </select>
+</mapper>
+<!--        用以根据传入条件动态查询订单行数据。
+        查询条件包含订单编号(模糊)、订单行号、物料编码(模糊)、物料名称(模糊)、订单创建人id、订单客户id。-->
+<!--        查询结果包含订单编号、客户名称、客户地址、订单备注、订单创建人、订单行号、物料编码、物料名称、单价、数量、行总价-->
